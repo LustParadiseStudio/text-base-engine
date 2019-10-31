@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 //Config
-import { saveStates, actions } from "./Store/Config";
+import { actions } from "./Store/Config";
+import { saveGame, loadSave } from "./Persistence/saveGame";
 
 //Store
 import { setQuickSave } from "./Store/Action/saveLoadAction";
@@ -14,32 +15,9 @@ import Story from "./Components/Story";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { isToggleOn: true };
 
-    this.saveQuick = this.saveQuick.bind(this);
-    this.loadQuick = this.loadQuick.bind(this);
-  }
-
-  saveQuick() {
-    const { store, setQuickSave } = this.props;
-    let data = {};
-
-    saveStates.forEach(state => {
-      let name = state.nameState;
-      data[name] = store[name];
-    });
-
-    let jsonData = JSON.stringify(data);
-    setQuickSave(jsonData);
-  }
-
-  loadQuick() {
-    const { quickSave } = this.props;
-    let data = JSON.parse(quickSave);
-
-    saveStates.forEach(state => {
-      this.props[state.nameAction](data[state.nameState]);
-    });
+    this.saveQuick = () => saveGame(this.props.store, this.props.setQuickSave);
+    this.loadQuick = () => loadSave(this.props.quickSave, this.props);
   }
 
   render() {
