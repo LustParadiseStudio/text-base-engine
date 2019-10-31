@@ -1,38 +1,27 @@
 const initialState = {
-  currentPage: null,
-  currentPageState: null,
-  isLoad: true,
-  forceUpdate: false
+  pageID: null,
+  pageData: null
 };
 
 const StoryActionType = {
   LOAD: "LOAD",
-  UPDATE_PAGE: "UPDATE_PAGE",
-  SAVE_PAGE_STATE: "SAVE_PAGE_STATE",
-  SET_LOAD: "SET_LOAD"
+  UPDATE_PAGE_ID: "UPDATE_PAGE_ID",
+  UPDATE_PAGE_DATA: "SAVE_PAGE_STATE"
 };
 
 const storyReducer = (state = initialState, action) => {
   switch (action.type) {
     case StoryActionType.LOAD:
       return action.data;
-    case StoryActionType.UPDATE_PAGE:
+    case StoryActionType.UPDATE_PAGE_ID:
       return {
         ...state,
-        currentPage: action.data.page,
-        isLoad: action.data.isLoad,
-        forceUpdate: !state.forceUpdate
+        pageID: action.payload.id
       };
-    case StoryActionType.SAVE_PAGE_STATE:
+    case StoryActionType.UPDATE_PAGE_DATA:
       return {
         ...state,
-        currentPageState: action.data.pageData,
-        isLoad: action.data.isLoad
-      };
-    case StoryActionType.SET_LOAD:
-      return {
-        ...state,
-        isLoad: action.data
+        pageData: action.payload.data
       };
     default:
       return state;

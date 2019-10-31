@@ -1,8 +1,12 @@
 import { Liveroom, Bathroom } from "../Home";
 
-const allComponents = {
-  Liveroom,
-  Bathroom
-};
+function buildData() {
+  return { randomNumber: Math.random() };
+}
 
-export { allComponents };
+const registerComponents = [
+  { id: "liveroom", build: buildData, component: Liveroom },
+  { id: "bathroom", build: buildData, component: Bathroom }
+];
+
+export { registerComponents };

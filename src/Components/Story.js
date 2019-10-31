@@ -3,44 +3,31 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 //Config
-import { allComponents } from "../Game/Config/storyConfig";
+import { registerComponents } from "../Game/Config/storyConfig";
 
 //Store
 import { setPageStory } from "../Store/Action/storyAction";
 
 class Story extends Component {
   render() {
-    const {
-      currentPage,
-      isRefreshOrLoad,
-      pageData,
-      setPageStory,
-      forceUpdate
-    } = this.props;
+    const { pageID, pageData, setPageStory } = this.props;
 
-    let componentRender = null;
-    if (currentPage == null) {
-      setPageStory("Liveroom", false);
-    } else {
-      var props = { forceUpdate };
+    if (pageID) {
+      let componentRender = null;
+      let page = registerComponents.find(page => page.id === pageID);
 
-      if (isRefreshOrLoad) {
-        props.data = pageData;
-      }
-
-      var component = allComponents[currentPage];
-      componentRender = React.createElement(component, props);
+      componentRender = React.createElement(page.component, { data: pageData });
+      return <div>{componentRender}</div>;
     }
 
-    return <div>{componentRender}</div>;
+    setPageStory("liveroom", false);
+    return <div></div>;
   }
 }
 
 const mapStateToProps = store => ({
-  currentPage: store.storyState.currentPage,
-  pageData: store.storyState.currentPageState,
-  isRefreshOrLoad: store.storyState.isLoad,
-  forceUpdate: store.storyState.forceUpdate
+  pageID: store.storyState.pageID,
+  pageData: store.storyState.pageData,  
 });
 
 const mapDispatchToProps = dispatch =>

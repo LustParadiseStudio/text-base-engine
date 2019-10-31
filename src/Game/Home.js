@@ -1,63 +1,38 @@
-import React from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { setPageStory, saveStoryState, setLoad } from "../Store/Action/storyAction";
-import { StoryBase } from "../Components/StoryBase";
+import { setPageStory } from "../Store/Action/storyAction";
 
-class LiveroomComponent extends StoryBase {
-  state = {
-    randomNumber: null
-  };
-
-  constructor(props) {
-    super(props);
-    this.key = "Liveroom";
-  }
-
-  buildData() {
-    return { randomNumber: Math.random() };
-  }
-
+class LiveroomComponent extends Component {
   render() {
-    const { setPageStory } = this.props;
-    let data = this.getData();
+    const { data, setPageStory } = this.props;
 
     return (
       <div>
         <h1>Liveroom {data.randomNumber}</h1>
-        <button onClick={() => setPageStory("Liveroom", false)}>
+        <button onClick={() => setPageStory("liveroom", false)}>
           Liveroom Refresh
         </button>
 
-        <button onClick={() => setPageStory("Bathroom", false)}>Bathroom</button>
+        <button onClick={() => setPageStory("bathroom", false)}>
+          Bathroom
+        </button>
       </div>
     );
   }
 }
 
-class BathroomComponent extends StoryBase {
-  state = {
-    randomNumber: null
-  };
-
-  constructor(props) {
-    super(props);
-    this.key = "Bathroom";
-  }
-
-  buildData() {
-    return { randomNumber: Math.random() };
-  }
-
+class BathroomComponent extends Component {
   render() {
-    const { setPageStory } = this.props;
-    const data = this.getData();
+    const { data, setPageStory } = this.props;
 
     return (
       <div>
         <h1>Bathroom {data.randomNumber}</h1>
-        <button onClick={() => setPageStory("Liveroom", false)}>Liveroom</button>
+        <button onClick={() => setPageStory("liveroom", false)}>
+          Liveroom
+        </button>
       </div>
     );
   }
@@ -66,7 +41,7 @@ class BathroomComponent extends StoryBase {
 const mapStateToProps = store => ({});
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ setPageStory, saveStoryState, setLoad }, dispatch);
+  bindActionCreators({ setPageStory }, dispatch);
 
 const Liveroom = connect(
   mapStateToProps,
