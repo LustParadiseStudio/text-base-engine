@@ -1,6 +1,7 @@
-import { StoryActionType } from "../Reducers/storyReducer";
-import { registerComponents } from "../../Game/Config/storyConfig";
 import { takeLatest, put } from "redux-saga/effects";
+
+import { registerComponents } from "../../Game/Config/storyConfig";
+import { StoryActionType } from "../Reducers/storyReducer";
 
 function* asyncSetPage(action) {
   const page = registerComponents.find(page => page.id === action.payload.id);
@@ -18,11 +19,6 @@ function* asyncSetPage(action) {
 }
 
 export default [takeLatest("ASYNC_SET_PAGE", asyncSetPage)];
-
-export const setStory = obj => ({
-  type: StoryActionType.LOAD,
-  data: obj
-});
 
 export const setPageStory = (id, isLoad) => ({
   type: "ASYNC_SET_PAGE",

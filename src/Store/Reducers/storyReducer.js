@@ -3,16 +3,16 @@ const initialState = {
   pageData: null
 };
 
-const StoryActionType = {
-  LOAD: "LOAD",
+export const StoryActionType = {
+  SET: "SET_STORY",
   UPDATE_PAGE_ID: "UPDATE_PAGE_ID",
   UPDATE_PAGE_DATA: "SAVE_PAGE_STATE"
 };
 
-const storyReducer = (state = initialState, action) => {
+export const storyReducer = (state = initialState, action) => {
   switch (action.type) {
-    case StoryActionType.LOAD:
-      return action.data;
+    case StoryActionType.SET:
+      return action.payload;
     case StoryActionType.UPDATE_PAGE_ID:
       return {
         ...state,
@@ -27,5 +27,3 @@ const storyReducer = (state = initialState, action) => {
       return state;
   }
 };
-
-export { StoryActionType, storyReducer };

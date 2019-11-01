@@ -1,15 +1,13 @@
-import { setStory } from "../Action/storyAction";
-import { setPlayerStatus } from "../Action/playerAction";
+import { PlayerActionType } from "../Reducers/playerReducer";
+import { StoryActionType } from "../Reducers/storyReducer";
 
 export const saveStates = [
   {
     nameState: "playerState",
-    nameAction: "setPlayerStatus"
+    nameAction: PlayerActionType.SET
   },
   {
     nameState: "storyState",
-    nameAction: "setStory"
+    nameAction: StoryActionType.SET
   }
 ];
-
-export const actions = { setStory, setPlayerStatus };
