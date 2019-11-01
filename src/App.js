@@ -26,6 +26,9 @@ class App extends Component {
 
     this.overrideSaveGame = () =>
       saveGame({ type: SaveType.OVERRIDE, index: 0 });
+
+    this.backHistory = () => loadGame({ type: LoadType.PREVIOUS });
+    this.nextHistory = () => loadGame({ type: LoadType.NEXT });
   }
 
   render() {
@@ -38,6 +41,8 @@ class App extends Component {
 
         <button onClick={this.saveGame}>SaveGame</button>
         <button onClick={this.loadGame}>LoadGame</button>
+        <button onClick={this.backHistory}>Back</button>
+        <button onClick={this.nextHistory}>Next</button>
         <button onClick={() => console.log(this.props.store)}>
           Print Console Store
         </button>

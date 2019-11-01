@@ -20,7 +20,7 @@ class Story extends Component {
       return <div>{componentRender}</div>;
     }
 
-    setPageStory("liveroom", false);
+    setPageStory("liveroom");
     return <div></div>;
   }
 }

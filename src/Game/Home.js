@@ -15,7 +15,7 @@ class LiveroomComponent extends Component {
           Liveroom Refresh
         </button>
 
-        <button onClick={() => setPageStory("bathroom", false)}>
+        <button onClick={() => setPageStory("bathroom")}>
           Bathroom
         </button>
       </div>
@@ -30,7 +30,7 @@ class BathroomComponent extends Component {
     return (
       <div>
         <h1>Bathroom {data.randomNumber}</h1>
-        <button onClick={() => setPageStory("liveroom", false)}>
+        <button onClick={() => setPageStory("liveroom")}>
           Liveroom
         </button>
       </div>

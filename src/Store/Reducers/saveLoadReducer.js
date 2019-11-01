@@ -19,7 +19,7 @@ const saveLoadReducer = (state = initialState, action) => {
     case SaveLoadActionType.ADD_SAVE:
       var addSave = [...state.slots];
       addSave.push(action.payload);
-      
+
       return {
         ...state,
         slots: addSave
